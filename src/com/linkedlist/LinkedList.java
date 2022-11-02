@@ -43,14 +43,29 @@ public class LinkedList<T> {
         System.out.println(newNode.data);
     }
 
+    public void addAtIndex(int index, T data) {
+        Node<T> newNode = new Node<>();
+        newNode.data = data;
 
-
-        public static void main(String[] args) {
-            LinkedList<Integer> numberList = new LinkedList<>();
-            numberList.add(56);
-            numberList.add(30);
-            numberList.add(70);
-            numberList.show();
+        if (index == 0) {
+            addAtStart(data);
+        } else {
+            Node<T> node = head;
+            for (int i = 0; i < index - 1; i++) {
+                node = node.next;
+            }
+            newNode.next = node.next;
+            node.next = newNode;
         }
     }
+
+
+    public static void main(String[] args) {
+        LinkedList<Integer> numberList = new LinkedList<>();
+        numberList.add(56);
+        numberList.add(70);
+        numberList.addAtIndex(1, 30);
+        numberList.show();
+    }
+}
 
