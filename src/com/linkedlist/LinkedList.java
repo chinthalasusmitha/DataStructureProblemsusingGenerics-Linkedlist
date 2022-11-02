@@ -58,13 +58,15 @@ public class LinkedList<T> {
             node.next = newNode;
         }
     }
-        public void pop () {
-            if (null != head) {
-                Node<T> newHead = head.next;
-                head = newHead;
-            }
 
+    public void pop() {
+        if (null != head) {
+            Node<T> newHead = head.next;
+            head = newHead;
         }
+
+    }
+
     public void popLast() {
         Node<T> tail = head;
         Node<T> prevNode = head;
@@ -75,16 +77,33 @@ public class LinkedList<T> {
         prevNode.next = null;
     }
 
+    public int searchByValue(T value) {
+        Node<T> currNode = head;
+        int index = 0;
+        if (null != currNode) {
+            while ((null != currNode.next) || (null != currNode.data)) {
+                if (currNode.data == value) {
+                    break;
+                }
+                currNode = currNode.next;
+                if (null == currNode) {
+                    return -1;
+                }
+                index++;
+            }
+        }
+        return index;
+    }
+
 
     public static void main(String[] args) {
         LinkedList<Integer> numberList = new LinkedList<>();
         numberList.add(56);
         numberList.add(70);
         numberList.addAtIndex(1, 30);
-        System.out.println("Before Deleting Last Element");
         numberList.show();
-        System.out.println("After Deleting Last Element");
-        numberList.popLast();
-        numberList.show();    }
+        String searchResult = (numberList.searchByValue(30) == -1) ? "value not found in the list" : "value found at index " + numberList.searchByValue(30);
+        System.out.println(searchResult);
+    }
 }
 
