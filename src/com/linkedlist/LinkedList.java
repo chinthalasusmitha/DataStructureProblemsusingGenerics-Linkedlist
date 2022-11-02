@@ -58,6 +58,13 @@ public class LinkedList<T> {
             node.next = newNode;
         }
     }
+        public void pop () {
+            if (null != head) {
+                Node<T> newHead = head.next;
+                head = newHead;
+            }
+
+        }
 
 
     public static void main(String[] args) {
@@ -65,7 +72,10 @@ public class LinkedList<T> {
         numberList.add(56);
         numberList.add(70);
         numberList.addAtIndex(1, 30);
+        System.out.println("Before Deleting First Element");
         numberList.show();
-    }
+        System.out.println("After Deleting First Element");
+        numberList.pop();
+        numberList.show();    }
 }
 
