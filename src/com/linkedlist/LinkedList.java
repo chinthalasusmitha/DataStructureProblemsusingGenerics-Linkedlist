@@ -3,7 +3,7 @@ package com.linkedlist;
 
 public class LinkedList<T> {
     Node<T> head;
-//     * Method for Appending the specified element to the end of this list.
+//      Method for Appending the specified element to the end of this list.
 
     public void add(T value) {
         Node<T> newNode = new Node<T>();
@@ -21,7 +21,7 @@ public class LinkedList<T> {
     }
 
 
-//     * Method for printing the data inside the linkedlist.
+//      Method for printing the data inside the linked list.
 
     public void show() {
         Node<T> node = head;
@@ -32,7 +32,7 @@ public class LinkedList<T> {
         System.out.println(node.data);
     }
 
-//     * Method for Inserting the specific element at the start of the list.
+//      Method for Inserting the specific element at the start of the list.
 
     public void addAtStart(T value) {
 
@@ -94,7 +94,10 @@ public class LinkedList<T> {
         }
         return index;
     }
-
+    public void searchAndInsert(T searchValue, T InsertValue){
+        int index = searchByValue(searchValue) + 1;
+        addAtIndex(index, InsertValue);
+    }
 
     public static void main(String[] args) {
         LinkedList<Integer> numberList = new LinkedList<>();
@@ -102,8 +105,12 @@ public class LinkedList<T> {
         numberList.add(70);
         numberList.addAtIndex(1, 30);
         numberList.show();
-        String searchResult = (numberList.searchByValue(30) == -1) ? "value not found in the list" : "value found at index " + numberList.searchByValue(30);
+        String searchResult = (numberList.searchByValue(30) == -1) ? "value not found in the list" :
+                "value found at index " + numberList.searchByValue(30);
         System.out.println(searchResult);
+        System.out.println("After Inserting");
+        numberList.searchAndInsert(30,40);
+        numberList.show();
     }
 }
 
