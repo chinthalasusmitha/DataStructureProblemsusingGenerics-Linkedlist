@@ -98,6 +98,26 @@ public class LinkedList<T> {
         int index = searchByValue(searchValue) + 1;
         addAtIndex(index, InsertValue);
     }
+//    Removes the element at the specified position in this list
+
+    public void popAtIndex(int index) {
+        if (index == 0) {
+            pop();
+        } else {
+            Node<T> prevNode = head;
+            Node<T> currNode = head;
+            for (int i = 0; i < index; i++) {
+                prevNode = currNode;
+                currNode = currNode.next;
+            }
+            prevNode.next = currNode.next;
+        }
+    }
+
+    public void searchValueAndDelete (T searchValue){
+        int index = searchByValue(searchValue);
+        popAtIndex(index);
+    }
 
     public static void main(String[] args) {
         LinkedList<Integer> numberList = new LinkedList<>();
@@ -111,6 +131,11 @@ public class LinkedList<T> {
         System.out.println("After Inserting");
         numberList.searchAndInsert(30,40);
         numberList.show();
+        System.out.println();
+        numberList.searchValueAndDelete(40);
+        System.out.println("After Deleting");
+        numberList.show();
+//        System.out.println("Size of list is : " + numberList.size());
     }
 }
 
